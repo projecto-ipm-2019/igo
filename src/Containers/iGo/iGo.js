@@ -22,6 +22,11 @@ export default class iGo extends Component {
                 Test check mic 1 2 3 going overboard and it all stays inside this box!
               </Link>
             </Route>
+            <Route exact path={"/igo/"}>
+              <h1>
+                Press HOME to turn ON!
+              </h1>
+            </Route>
             <Route path={"/menu"} component={MainMenu}/>
           </Switch>
         </div>
@@ -38,10 +43,13 @@ export class ButtonContainer extends Component {
   }
 
   goBack(){
-    this.props.history.goBack();
+    if(this.props.location.pathname !== "/igo/" && this.props.location.pathname !== "/")
+      this.props.history.goBack();
   }
 
   render() {
+    console.debug("Button Container Props: ", this.props);
+
     return (
       <div className={"Button-container"}>
         <Link to={"/"}>
