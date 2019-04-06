@@ -1,0 +1,11 @@
+.App {
+    /* Background */
+    background-color: #282c34;
+
+    /* Display content in the middle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw; /* 100% viewport width */
+    height: 100vh; /* 100% viewport height */
+}
