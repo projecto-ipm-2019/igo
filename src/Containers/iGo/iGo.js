@@ -22,7 +22,7 @@ export default class iGo extends Component {
                 Test check mic 1 2 3 going overboard and it all stays inside this box!
               </Link>
             </Route>
-            <Route exact path={"/igo/"}>
+            <Route path={"/igo"}>
               <h1>
                 Press HOME to turn ON!
               </h1>
