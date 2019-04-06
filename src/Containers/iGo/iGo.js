@@ -1,14 +1,58 @@
 import React, { Component } from 'react';
-import "./iGo.css"
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
-export default class extends Component {
+import "./iGo.css"
+import logo from "./logo.svg"
+import { MainMenu } from "../MainMenu/MainMenu";
+
+export default class iGo extends Component {
+  render() {
+    return(
+      <Router>
+        <div className={"iGo"}>
+          <Switch>
+            <Route exact path={"/"}>
+              <Link to={"/menu"}>
+                <input
+                  type={"image"}
+                  alt={"logo"}
+                  src={logo}
+                  className={"App-logo"}
+                />
+                Test check mic 1 2 3 going overboard and it all stays inside this box!
+              </Link>
+            </Route>
+            <Route path={"/menu"} component={MainMenu}/>
+          </Switch>
+        </div>
+        <Route path={"/"} component={ButtonContainer}/>
+      </Router>
+    );
+  }
+}
+
+export class ButtonContainer extends Component {
+  constructor(props){
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
+
+  goBack(){
+    this.props.history.goBack();
+  }
+
   render() {
     return (
-      <div className="iGo">
-        Test check mic 1 2 3 going overboard and it all stays inside this box!
-        <br/>
-        Travis CD test
+      <div className={"Button-container"}>
+        <Link to={"/"}>
+          <button>
+            HOME
+          </button>
+        </Link>
+        <button onClick={this.goBack}>
+          BACK
+        </button>
       </div>
-    );
+    )
   }
 }
