@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/igo/static/js/runtime~main.1acb7b02.js"
   },
   {
-    "revision": "43952a961f3209f9918f",
-    "url": "/igo/static/js/main.df89b830.chunk.js"
+    "revision": "c130c635d0262da0d66b",
+    "url": "/igo/static/js/main.ea95852c.chunk.js"
   },
   {
     "revision": "343b4c8b0fbc5a1075a9",
     "url": "/igo/static/js/2.b83a2d41.chunk.js"
   },
   {
-    "revision": "43952a961f3209f9918f",
+    "revision": "c130c635d0262da0d66b",
     "url": "/igo/static/css/main.62142662.chunk.css"
   },
   {
-    "revision": "ca46e96ffe137f2dd3be9da52a933108",
+    "revision": "7a00d5135b63acda659d7107a1353569",
     "url": "/igo/index.html"
   }
 ];
