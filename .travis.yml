@@ -10,8 +10,7 @@ script:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: f827f144080442065acce37cff77548300b6bbba
-  local_dir: build
-  target-branch: gh-pages
+  github_token: $GITHUB_TOKEN
+  keep_history: true
   on:
     branch: develop
