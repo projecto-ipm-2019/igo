@@ -1,0 +1,13 @@
+.Notifications {
+    height: 45mm;
+    overflow: scroll;
+}
+
+.Notifications-Entry {
+    height: 10mm;
+    border: 1px solid gray;
+}
+
+.Notifications-Title {
+    border-bottom: 3px solid black;
+}
