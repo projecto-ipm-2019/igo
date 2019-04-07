@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/projecto-ipm-2019/igo.svg?branch=develop)](https://travis-ci.org/projecto-ipm-2019/igo)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
