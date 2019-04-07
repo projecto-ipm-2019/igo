@@ -3,7 +3,7 @@ import ReactSwipe from 'nuka-carousel'
 import { Link } from "react-router-dom";
 
 import "./MainMenu.css"
-import logo from  "./logo.svg"
+import logo from "./Resources/logo.svg"
 
 export class MainMenu extends Component {
   render() {

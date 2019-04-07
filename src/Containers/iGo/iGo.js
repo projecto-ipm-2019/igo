@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 import "./iGo.css"
-import logo from "./logo.svg"
+import logo from "./Resources/logo.svg"
 import { MainMenu } from "../MainMenu/MainMenu";
 import Friends from "../Friends/Friends";
 import Events from "../Events/Events";
