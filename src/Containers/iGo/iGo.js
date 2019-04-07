@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import "./iGo.css"
 import logo from "./logo.svg"
 import { MainMenu } from "../MainMenu/MainMenu";
+import Friends from "../Friends/Friends";
+import Events from "../Events/Events";
+import Notifications from "../Notifications/Notifications";
 
 export default class iGo extends Component {
   render() {
@@ -12,7 +15,7 @@ export default class iGo extends Component {
         <div className={"iGo"}>
           <Switch>
             <Route exact path={"/"}>
-              <Link to={"/menu"}>
+              <Link to={"/Menu"}>
                 <input
                   type={"image"}
                   alt={"logo"}
@@ -27,7 +30,10 @@ export default class iGo extends Component {
                 Press HOME to turn ON!
               </h1>
             </Route>
-            <Route path={"/menu"} component={MainMenu}/>
+            <Route path={"/Menu"} component={MainMenu}/>
+            <Route path={"/Friends"} component={Friends}/>
+            <Route path={"/Events"} component={Events}/>
+            <Route path={"/Notifications"} component={Notifications}/>
           </Switch>
         </div>
         <Route path={"/"} component={ButtonContainer}/>

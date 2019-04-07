@@ -1,3 +1,24 @@
-.MainMenu {
-    /*Main Menu Style*/
+.MainMenu ul{
+    width: 45mm;
+    height: 10mm;
+}
+
+.MainMenu button {
+    pointer-events: none;
+}
+
+.MainMenu-Friends {
+    height: 45mm;
+}
+
+.MainMenu-Events {
+    height: 45mm;
+}
+
+.MainMenu-Notifications {
+    height: 45mm;
+}
+
+.MainMenu-Entry {
+    height: 35mm;
 }
