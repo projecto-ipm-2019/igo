@@ -1,14 +1,14 @@
 {
-  "main.css": "/igo/static/css/main.073e584c.chunk.css",
-  "main.js": "/igo/static/js/main.ce6ad882.chunk.js",
-  "main.js.map": "/igo/static/js/main.ce6ad882.chunk.js.map",
+  "main.css": "/igo/static/css/main.0328f38d.chunk.css",
+  "main.js": "/igo/static/js/main.7c946b4a.chunk.js",
+  "main.js.map": "/igo/static/js/main.7c946b4a.chunk.js.map",
   "runtime~main.js": "/igo/static/js/runtime~main.1acb7b02.js",
   "runtime~main.js.map": "/igo/static/js/runtime~main.1acb7b02.js.map",
-  "static/js/2.ce9b688e.chunk.js": "/igo/static/js/2.ce9b688e.chunk.js",
-  "static/js/2.ce9b688e.chunk.js.map": "/igo/static/js/2.ce9b688e.chunk.js.map",
+  "static/js/2.97d1851b.chunk.js": "/igo/static/js/2.97d1851b.chunk.js",
+  "static/js/2.97d1851b.chunk.js.map": "/igo/static/js/2.97d1851b.chunk.js.map",
   "index.html": "/igo/index.html",
-  "precache-manifest.0a03c4d8146ab34b97775159323436d9.js": "/igo/precache-manifest.0a03c4d8146ab34b97775159323436d9.js",
+  "precache-manifest.2d823bc04a3efe885d0df7e9156b91d1.js": "/igo/precache-manifest.2d823bc04a3efe885d0df7e9156b91d1.js",
   "service-worker.js": "/igo/service-worker.js",
-  "static/css/main.073e584c.chunk.css.map": "/igo/static/css/main.073e584c.chunk.css.map",
+  "static/css/main.0328f38d.chunk.css.map": "/igo/static/css/main.0328f38d.chunk.css.map",
   "static/media/logo.svg": "/igo/static/media/logo.5d5d9eef.svg"
 }
