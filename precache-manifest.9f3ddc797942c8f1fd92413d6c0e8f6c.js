@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "7c25345412a02384dbd8",
-    "url": "/igo/static/css/main.0328f38d.chunk.css"
+    "revision": "2100a19875abfc1fbeb3",
+    "url": "/igo/static/css/main.34a2f74f.chunk.css"
   },
   {
-    "revision": "7c25345412a02384dbd8",
-    "url": "/igo/static/js/main.7c946b4a.chunk.js"
+    "revision": "2100a19875abfc1fbeb3",
+    "url": "/igo/static/js/main.aeec64c3.chunk.js"
   },
   {
     "revision": "3c48dfc41aca70a35e3a",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/igo/static/media/logo.5d5d9eef.svg"
   },
   {
-    "revision": "93a7b4e7b60bde1dae940b8c4177eb8b",
+    "revision": "ecb0ba6af69497949a7b55ae04da9450",
     "url": "/igo/index.html"
   }
 ];
