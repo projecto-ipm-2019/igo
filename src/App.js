@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-// IGo with capitalized I because React Components need to start with capitalized letter
-import IGo from "./Containers/iGo/iGo";
+// IGo with capitalized I because React PureComponents need to start with capitalized letter
+import IGo from "./iGo/iGo";
 
 class App extends Component {
   render() {

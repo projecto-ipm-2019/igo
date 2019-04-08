@@ -42,3 +42,13 @@
     padding-top: 50%;
     padding-bottom: 50%;
 }
+
+.iGo-InitialScreen h1{
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.iGo-InitialScreen a{
+    color: black;
+    text-decoration: none;
+}

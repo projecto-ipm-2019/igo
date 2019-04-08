@@ -2,29 +2,24 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 import "./iGo.css"
-import logo from "./Resources/logo.svg"
 import { MainMenu } from "../MainMenu/MainMenu";
 import Friends from "../Friends/Friends";
 import Events from "../Events/Events";
 import Notifications from "../Notifications/Notifications";
 
+// Resources
+import logo from "./Resources/logo.svg"
+import { notificationsList } from "./Resources/notificationsList";
+
 export default class iGo extends Component {
+  notifications = notificationsList;
+
   render() {
     return(
       <Router>
         <div className={"iGo"}>
           <Switch>
-            <Route exact path={"/"}>
-              <Link to={"/Menu"}>
-                <input
-                  type={"image"}
-                  alt={"logo"}
-                  src={logo}
-                  className={"App-logo"}
-                />
-                Test check mic 1 2 3 going overboard and it all stays inside this box!
-              </Link>
-            </Route>
+            <Route exact path={"/"} component={InitialScreen}/>
             <Route path={"/igo"}>
               <h1>
                 Press HOME to turn ON!
@@ -33,11 +28,35 @@ export default class iGo extends Component {
             <Route path={"/Menu"} component={MainMenu}/>
             <Route path={"/Friends"} component={Friends}/>
             <Route path={"/Events"} component={Events}/>
-            <Route path={"/Notifications"} component={Notifications}/>
+            <Route path={"/Notifications"}>
+              <Notifications
+                notifications={this.notifications}
+              />
+            </Route>
           </Switch>
         </div>
         <Route path={"/"} component={ButtonContainer}/>
       </Router>
+    );
+  }
+}
+
+export class InitialScreen extends Component {
+  render() {
+    return(
+      <div className={"iGo-InitialScreen"}>
+        <Link to={"/Menu"}>
+          <input
+            type={"image"}
+            alt={"logo"}
+            src={logo}
+            className={"App-logo"}
+          />
+          <h1>
+            iGo
+          </h1>
+        </Link>
+      </div>
     );
   }
 }
