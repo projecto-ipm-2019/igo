@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import './Notifications.css'
 import ReactSwipe from 'nuka-carousel';
-import { Entry } from '../MainMenu/MainMenu';
 
 export default class extends Component {
   constructor(props) {
@@ -77,20 +76,20 @@ export class Notification extends Component {
           <Link
             to={source}
           >
-            <Notification_Entry
+            <NotificationEntry
               text={text}
               isRead={isRead}
             />
           </Link>
           :
-          <Notification_Entry
+          <NotificationEntry
             text={text}
             isRead={isRead}
             onClick={
               (event) => markRead(index)}
           >
             {text}
-          </Notification_Entry>
+          </NotificationEntry>
         }
         <div className={"Notifications-Delete"}>
           DELETE!!!
@@ -100,7 +99,7 @@ export class Notification extends Component {
   }
 }
 
-export const Notification_Entry = ({text, isRead, onClick}) => {
+export const NotificationEntry = ({text, isRead, onClick}) => {
   return(
     <div
         className={"Notifications-Entry"}
