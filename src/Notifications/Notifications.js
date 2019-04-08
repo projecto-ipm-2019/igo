@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import './Notifications.css'
 import ReactSwipe from 'nuka-carousel';
+import { Entry } from '../MainMenu/MainMenu';
 
 export default class extends Component {
   constructor(props) {
@@ -53,29 +54,44 @@ export default class extends Component {
 }
 
 export class Notification extends Component {
+
   render() {
+    const {
+      isRead,
+      text,
+      index,
+      afterSlide,
+      markRead,
+      source
+    } = this.props
+
     return (
       <ReactSwipe
         withoutControls={true}
         afterSlide={(slideIndex) => {
-          if(slideIndex === 2)
-            this.props.afterSlide(this.props.index)
+          if(slideIndex === 1)
+            afterSlide(this.props.index)
         }}
       >
-        <div
-          className={"Notifications-Entry"}
-          style={{backgroundColor: this.props.isRead ? 'white' : 'gray'}}
-          onClick={(event) => this.props.markRead(this.props.index)}
-        >
-          {this.props.text}
-        </div>
-        <div className={"Notifications-Open"}>
-          <Link to={this.props.source}>
-              <div>
-                  OPEN
-              </div>
+        {isRead ? 
+          <Link
+            to={source}
+          >
+            <Notification_Entry
+              text={text}
+              isRead={isRead}
+            />
           </Link>
-        </div>
+          :
+          <Notification_Entry
+            text={text}
+            isRead={isRead}
+            onClick={
+              (event) => markRead(index)}
+          >
+            {text}
+          </Notification_Entry>
+        }
         <div className={"Notifications-Delete"}>
           DELETE!!!
         </div>
@@ -83,3 +99,15 @@ export class Notification extends Component {
     );
   }
 }
+
+export const Notification_Entry = ({text, isRead, onClick}) => {
+  return(
+    <div
+        className={"Notifications-Entry"}
+        style={{backgroundColor: isRead ? 'white' : 'gray'}}
+        onClick={onClick}
+      >
+        {text}
+      </div>
+  );
+} 
