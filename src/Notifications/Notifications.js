@@ -53,29 +53,44 @@ export default class extends Component {
 }
 
 export class Notification extends Component {
+
   render() {
+    const {
+      isRead,
+      text,
+      index,
+      afterSlide,
+      markRead,
+      source
+    } = this.props
+
     return (
       <ReactSwipe
         withoutControls={true}
         afterSlide={(slideIndex) => {
-          if(slideIndex === 2)
-            this.props.afterSlide(this.props.index)
+          if(slideIndex === 1)
+            afterSlide(this.props.index)
         }}
       >
-        <div
-          className={"Notifications-Entry"}
-          style={{backgroundColor: this.props.isRead ? 'white' : 'gray'}}
-          onClick={(event) => this.props.markRead(this.props.index)}
-        >
-          {this.props.text}
-        </div>
-        <div className={"Notifications-Open"}>
-          <Link to={this.props.source}>
-              <div>
-                  OPEN
-              </div>
+        {isRead ? 
+          <Link
+            to={source}
+          >
+            <NotificationEntry
+              text={text}
+              isRead={isRead}
+            />
           </Link>
-        </div>
+          :
+          <NotificationEntry
+            text={text}
+            isRead={isRead}
+            onClick={
+              (event) => markRead(index)}
+          >
+            {text}
+          </NotificationEntry>
+        }
         <div className={"Notifications-Delete"}>
           DELETE!!!
         </div>
@@ -83,3 +98,15 @@ export class Notification extends Component {
     );
   }
 }
+
+export const NotificationEntry = ({text, isRead, onClick}) => {
+  return(
+    <div
+        className={"Notifications-Entry"}
+        style={{backgroundColor: isRead ? 'white' : 'gray'}}
+        onClick={onClick}
+      >
+        {text}
+      </div>
+  );
+} 

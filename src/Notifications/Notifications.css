@@ -8,6 +8,11 @@
     height: 11mm;
 }
 
+.Notifications a {
+    color: black;
+    text-decoration: none;
+}
+
 .Notifications-Entry {
     border: 1px solid black;
     text-align: left;
@@ -21,11 +26,6 @@
 .Notifications-Open {
     background-color: aqua;
     line-height: 100%;
-}
-
-.Notifications-Open a{
-    color: black;
-    text-decoration: none;
 }
 
 .Notifications-Title {
