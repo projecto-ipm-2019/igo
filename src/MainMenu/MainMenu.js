@@ -3,7 +3,10 @@ import ReactSwipe from 'nuka-carousel'
 import { Link } from "react-router-dom";
 
 import "./MainMenu.css"
-import logo from "./Resources/logo.svg"
+import friendsImg from "./Resources/friends.svg"
+import notificationsImg from "./Resources/notifications.svg"
+import eventsImg from "./Resources/events.svg"
+import oneImg from "./Resources/oneCircle.png"
 
 export class MainMenu extends Component {
   render() {
@@ -17,20 +20,23 @@ export class MainMenu extends Component {
         <div className={"MainMenu-Friends"}>
           <Entry
             title={"Friends"}
-            src={logo}
+            src={friendsImg}
           />
         </div>
         <div className={"MainMenu-Events"}>
           <Entry
             title={"Events"}
-            src={logo}
+            src={eventsImg}
           />
         </div>
         <div className={"MainMenu-Notifications"}>
           <Entry
             title={"Notifications"}
-            src={logo}
+            src={notificationsImg}
           />
+		  <div className= {"NotifNumber"}>
+			<img src={oneImg} alt="nr"/>
+		  </div>
         </div>
       </ReactSwipe>
     );
@@ -38,16 +44,23 @@ export class MainMenu extends Component {
 }
 
 export const Entry = ({title, src}) => (
-  <div
-    className={"MainMenu-Entry"}
-  >
-    {title}
-    <Link to={"/" + title}>
-      <input
-        type={"image"}
-        alt={title + "-image"}
-        src={src}
-      />
-    </Link>
-  </div>
+	<table className={"MainMenuEntry"}>
+	<tr>
+		<th  >
+		{title}
+		</th>
+	</tr>
+	<tr>
+		<td>
+		<Link to={"/" + title}>
+		  <input
+			className={"MainMenuImage"}
+			type={"image"}
+			alt={title + "-image"}
+			src={src}
+		  />
+		</Link>
+		</td>
+	</tr>
+	</table>
 );

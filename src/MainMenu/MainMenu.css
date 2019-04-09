@@ -1,24 +1,18 @@
 .MainMenu ul{
-    width: 45mm;
-    height: 10mm;
+   width: 45mm;
+   height: 10px;
 }
 
-.MainMenu button {
-    pointer-events: none;
+.MainMenuImage{
+	width:120px;
 }
 
-.MainMenu-Friends {
-    height: 45mm;
+.MainMenuEntry{
+	margin-left:25px;
 }
 
-.MainMenu-Events {
-    height: 45mm;
-}
-
-.MainMenu-Notifications {
-    height: 45mm;
-}
-
-.MainMenu-Entry {
-    height: 35mm;
+.NotifNumber{
+	position: absolute;
+	left: 100px;
+	top: 35px;
 }

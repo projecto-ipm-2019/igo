@@ -8,7 +8,7 @@ import Events from "../Events/Events";
 import Notifications from "../Notifications/Notifications";
 
 // Resources
-import logo from "./Resources/logo.svg"
+import logo from "./Resources/iGOlogo.jpg"
 import { notificationsList } from "./Resources/notificationsList";
 
 export default class iGo extends Component {
@@ -52,9 +52,6 @@ export class InitialScreen extends Component {
             src={logo}
             className={"App-logo"}
           />
-          <h1>
-            iGo
-          </h1>
         </Link>
       </div>
     );
