@@ -30,7 +30,7 @@ export class MainMenu extends Component {
           />
         </div>
         <div className={"MainMenu-Notifications"}>
-			<Notif/>,
+			<Notif/>
         </div>
       </ReactSwipe>
     );
@@ -57,19 +57,16 @@ function Notif() {
 }
 
 export const Entry = ({title, src}) => (
-	<div className={"MainMenuEntry"}>
+	<div>
 		{title}
-		<div>
-		<Link to={"/" + title}>
-		  <input
-			type={"image"}
-			alt={title + "-image"}
-			src={src}
-			width="120"
-			height="120"
-			
-		  />
-		</Link>
+		<div className={"MainMenu-Entry"}>
+      <Link to={"/" + title}>
+        <input
+        type={"image"}
+        alt={title + "-image"}
+        src={src}
+        />
+      </Link>
 		</div>
 	</div>
 );

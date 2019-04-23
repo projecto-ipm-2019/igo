@@ -3,6 +3,26 @@
    height: 8mm;
 }
 
-.MainMenuEntry{
-	margin-left:5px;
+.MainMenu button {
+    pointer-events: none;
+}
+
+.MainMenu-Friends {
+    height: 45mm;
+}
+
+.MainMenu-Events {
+    height: 45mm;
+}
+
+.MainMenu-Notifications {
+    height: 45mm;
+}
+
+.MainMenu-Entry {
+    height: 35mm;
+}
+
+.MainMenu-Entry input {
+    height:100%;
 }
