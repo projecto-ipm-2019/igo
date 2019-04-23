@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import "./MainMenu.css"
 import logo from "./Resources/logo.svg"
+import { pathRoot } from "../iGo/iGo";
 
 export class MainMenu extends Component {
   render() {
@@ -42,7 +43,7 @@ export const Entry = ({title, src}) => (
     className={"MainMenu-Entry"}
   >
     {title}
-    <Link to={"/" + title}>
+    <Link to={pathRoot + "/" + title}>
       <input
         type={"image"}
         alt={title + "-image"}

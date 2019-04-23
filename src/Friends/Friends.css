@@ -1,3 +1,38 @@
 .Friends {
+    height: 45mm;
+    overflow-y: scroll;
+}
 
+.Friends-QR {
+    height: 45mm;
+}
+
+.Friends-Title {
+    border-bottom: black solid 1px;
+}
+
+.Friends-Entry {
+    height: 11mm;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    border-bottom: black solid 1px;
+    overflow: hidden;
+}
+
+.Friends-Entry a {
+    width: 30mm;
+}
+
+.Friends-Entry img {
+    width: 15mm;
+}
+
+.Profile {
+    height: 45mm;
+    overflow-y: scroll;
+}
+
+.Profile div {
+    border-bottom: black solid 1px;
 }

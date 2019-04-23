@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import './Notifications.css'
 import ReactSwipe from 'nuka-carousel';
 
+import { pathRoot } from "../iGo/iGo";
+
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +22,7 @@ export default class extends Component {
     }
   }
 
-  afterSlide = (notificationIndex) => {
+  afterSlide(notificationIndex) {
     this.setState({
       lastRemovedNotification: this.props.notifications.splice(notificationIndex, 1)[0]
     });
@@ -62,7 +64,7 @@ export class Notification extends Component {
       afterSlide,
       markRead,
       source
-    } = this.props
+    } = this.props;
 
     return (
       <ReactSwipe
@@ -74,7 +76,7 @@ export class Notification extends Component {
       >
         {isRead ? 
           <Link
-            to={source}
+            to={pathRoot + source}
           >
             <NotificationEntry
               text={text}
@@ -99,14 +101,12 @@ export class Notification extends Component {
   }
 }
 
-export const NotificationEntry = ({text, isRead, onClick}) => {
-  return(
-    <div
-        className={"Notifications-Entry"}
-        style={{backgroundColor: isRead ? 'white' : 'gray'}}
-        onClick={onClick}
-      >
-        {text}
-      </div>
-  );
-} 
+export const NotificationEntry = ({text, isRead, onClick}) => (
+  <div
+    className={"Notifications-Entry"}
+    style={{backgroundColor: isRead ? 'white' : 'gray'}}
+    onClick={onClick}
+  >
+    {text}
+  </div>
+);

@@ -1,13 +1,13 @@
 export const notificationsList = [
   {
-    text: "Already read Friend notification!",
+    text: "João Primeiro posted! Click to check his wall.",
     isRead: true,
-    source: "/Friends"
+    source: "/Friends/1"
   },
   {
-    text: "Unread Friend notification.",
+    text: "Madalena Gonçalves accepted your friend request.",
     isRead: false,
-    source: "/Friends"
+    source: "/Friends/3"
   },
   {
     text: "Already read Event notification!",
@@ -20,7 +20,7 @@ export const notificationsList = [
     source: "/Events"
   },
   {
-    text: "Already read Friend notification!  Overflow text on purpose.",
+    text: "André Segundo posted! Click to check his wall.",
     isRead: false,
     source: "/Friends"
   },
