@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import './Notifications.css'
 import ReactSwipe from 'nuka-carousel';
+import trashImg from "./trash.png"
 
 export default class extends Component {
   constructor(props) {
@@ -13,10 +14,11 @@ export default class extends Component {
 
   markRead(notificationIndex) {
     if (!this.props.notifications[notificationIndex].isRead) {
-      this.props.notifications[notificationIndex].isRead = true;
-      this.setState({
-        latestReadNotificationIndex: notificationIndex
-      });
+		this.props.notifications[notificationIndex].isRead = true;
+		this.setState({
+			latestReadNotificationIndex: notificationIndex
+		});
+		global.hasNewNotif--;
     }
   }
 
@@ -69,6 +71,7 @@ export class Notification extends Component {
         withoutControls={true}
         afterSlide={(slideIndex) => {
           if(slideIndex === 1)
+			if(!isRead){global.hasNewNotif--;}
             afterSlide(this.props.index)
         }}
       >
@@ -92,7 +95,7 @@ export class Notification extends Component {
           </NotificationEntry>
         }
         <div className={"Notifications-Delete"}>
-          DELETE!!!
+            <img src={trashImg} alt="trash" width="30"/>
         </div>
       </ReactSwipe>
     );
@@ -103,7 +106,7 @@ export const NotificationEntry = ({text, isRead, onClick}) => {
   return(
     <div
         className={"Notifications-Entry"}
-        style={{backgroundColor: isRead ? 'white' : 'gray'}}
+        style={{fontWeight: isRead ? 'normal' : 'bold'}}
         onClick={onClick}
       >
         {text}

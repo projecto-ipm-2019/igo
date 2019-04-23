@@ -19,8 +19,9 @@
 }
 
 .Notifications-Delete {
-    background-color: red;
-    line-height: 100%;
+	position:absolute;
+	margin-left: 12px;
+	margin-top: 5px;
 }
 
 .Notifications-Open {

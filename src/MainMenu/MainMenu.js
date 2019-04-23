@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 import "./MainMenu.css"
 import friendsImg from "./Resources/friends.svg"
-import notificationsImg from "./Resources/notifications.svg"
+import notificationsImg from "./Resources/notifications.png"
 import eventsImg from "./Resources/events.svg"
-import oneImg from "./Resources/oneCircle.png"
+import newNotifImg from "./Resources/newnotifications.png"
 
 export class MainMenu extends Component {
   render() {
@@ -30,37 +30,46 @@ export class MainMenu extends Component {
           />
         </div>
         <div className={"MainMenu-Notifications"}>
-          <Entry
-            title={"Notifications"}
-            src={notificationsImg}
-          />
-		  <div className= {"NotifNumber"}>
-			<img src={oneImg} alt="nr"/>
-		  </div>
+			<Notif/>,
         </div>
       </ReactSwipe>
     );
   }
 }
 
+function Notif() {
+	if (global.hasNewNotif===0){
+		return(
+		<Entry
+			title={"Notifications"}
+			src={notificationsImg}
+		/>
+		);
+	}
+	else{	
+		return(
+			<Entry
+				title={"Notifications"}
+				src={newNotifImg}
+			/>
+		);
+	}
+}
+
 export const Entry = ({title, src}) => (
-	<table className={"MainMenuEntry"}>
-	<tr>
-		<th  >
+	<div className={"MainMenuEntry"}>
 		{title}
-		</th>
-	</tr>
-	<tr>
-		<td>
+		<div>
 		<Link to={"/" + title}>
 		  <input
-			className={"MainMenuImage"}
 			type={"image"}
 			alt={title + "-image"}
 			src={src}
+			width="120"
+			height="120"
+			
 		  />
 		</Link>
-		</td>
-	</tr>
-	</table>
+		</div>
+	</div>
 );

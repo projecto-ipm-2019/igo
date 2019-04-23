@@ -1,18 +1,8 @@
 .MainMenu ul{
    width: 45mm;
-   height: 10px;
-}
-
-.MainMenuImage{
-	width:120px;
+   height: 8mm;
 }
 
 .MainMenuEntry{
-	margin-left:25px;
-}
-
-.NotifNumber{
-	position: absolute;
-	left: 100px;
-	top: 35px;
+	margin-left:5px;
 }

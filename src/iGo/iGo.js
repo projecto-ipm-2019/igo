@@ -10,9 +10,20 @@ import Notifications from "../Notifications/Notifications";
 // Resources
 import logo from "./Resources/iGOlogo.jpg"
 import { notificationsList } from "./Resources/notificationsList";
+import homeImg from "./Resources/home.svg"
+import returnImg from "./Resources/return.svg"
+
+global.hasNewNotif=0;
+
+for (let n in notificationsList){
+	if(!notificationsList[n].isRead){
+		global.hasNewNotif++;
+	}
+}
 
 export default class iGo extends Component {
   notifications = notificationsList;
+
 
   render() {
     return(
@@ -76,11 +87,11 @@ export class ButtonContainer extends Component {
       <div className={"Button-container"}>
         <Link to={"/"}>
           <button>
-            HOME
+            <img src={homeImg} alt="home" width="31.9" />
           </button>
         </Link>
         <button onClick={this.goBack}>
-          BACK
+            <img src={returnImg} alt="return" width="31.9" />
         </button>
       </div>
     )
