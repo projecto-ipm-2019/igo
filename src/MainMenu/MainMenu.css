@@ -1,6 +1,6 @@
 .MainMenu ul{
-    width: 45mm;
-    height: 10mm;
+   width: 45mm;
+   height: 8mm;
 }
 
 .MainMenu button {
@@ -21,4 +21,8 @@
 
 .MainMenu-Entry {
     height: 35mm;
+}
+
+.MainMenu-Entry input {
+    height:100%;
 }

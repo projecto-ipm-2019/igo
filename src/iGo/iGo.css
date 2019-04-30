@@ -12,18 +12,6 @@
     text-align: center;
 }
 
-.App-logo {
-    /* App Logo Style */
-    /* Animation */
-    animation: App-logo-spin infinite 20s linear;
-    pointer-events: bounding-box;
-}
-
-.App-logo:focus {
-    /* Remove blue border onClick */
-    outline: none;
-}
-
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);
@@ -31,6 +19,12 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+.App-logo {
+	width: 125px;
+	height: 150px;
+	margin-top: 10px;
 }
 
 .Button-container {

@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 import './Notifications.css'
 import ReactSwipe from 'nuka-carousel';
+import trashImg from "./trash.png"
+
+import { pathRoot } from "../iGo/iGo";
 
 export default class extends Component {
   constructor(props) {
@@ -13,14 +16,15 @@ export default class extends Component {
 
   markRead(notificationIndex) {
     if (!this.props.notifications[notificationIndex].isRead) {
-      this.props.notifications[notificationIndex].isRead = true;
-      this.setState({
-        latestReadNotificationIndex: notificationIndex
-      });
+		this.props.notifications[notificationIndex].isRead = true;
+		this.setState({
+			latestReadNotificationIndex: notificationIndex
+		});
+		global.hasNewNotif--;
     }
   }
 
-  afterSlide = (notificationIndex) => {
+  afterSlide(notificationIndex) {
     this.setState({
       lastRemovedNotification: this.props.notifications.splice(notificationIndex, 1)[0]
     });
@@ -62,19 +66,20 @@ export class Notification extends Component {
       afterSlide,
       markRead,
       source
-    } = this.props
+    } = this.props;
 
     return (
       <ReactSwipe
         withoutControls={true}
         afterSlide={(slideIndex) => {
           if(slideIndex === 1)
+			if(!isRead){global.hasNewNotif--;}
             afterSlide(this.props.index)
         }}
       >
         {isRead ? 
           <Link
-            to={source}
+            to={pathRoot + source}
           >
             <NotificationEntry
               text={text}
@@ -92,21 +97,19 @@ export class Notification extends Component {
           </NotificationEntry>
         }
         <div className={"Notifications-Delete"}>
-          DELETE!!!
+            <img src={trashImg} alt="trash" width="30"/>
         </div>
       </ReactSwipe>
     );
   }
 }
 
-export const NotificationEntry = ({text, isRead, onClick}) => {
-  return(
-    <div
-        className={"Notifications-Entry"}
-        style={{backgroundColor: isRead ? 'white' : 'gray'}}
-        onClick={onClick}
-      >
-        {text}
-      </div>
-  );
-} 
+export const NotificationEntry = ({text, isRead, onClick}) => (
+  <div
+    className={"Notifications-Entry"}
+    style={{backgroundColor: isRead ? 'white' : 'gray'}}
+    onClick={onClick}
+  >
+    {text}
+  </div>
+);
