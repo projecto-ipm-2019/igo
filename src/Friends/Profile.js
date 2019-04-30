@@ -5,6 +5,7 @@ import './Friends.css';
 
 import ReactSwipe from 'nuka-carousel';
 import {pathRoot} from "../iGo/iGo";
+import ProfileAvatar from "./ProfileAvatar"
 
 export default class extends Component {
   state = {
@@ -23,8 +24,11 @@ export default class extends Component {
     const { profiles } = this.props;
     const { friendshipStatus } = profiles[this.profileIndex];
     if(!friendshipStatus.isPending && !friendshipStatus.isRequest) {
-      if(friendshipStatus.isFriend)
+      if(friendshipStatus.isFriend) {
         profiles[this.profileIndex].friendshipStatus.isFriend = false;
+        profiles[this.profileIndex].recent = 0;
+        profiles[this.profileIndex].recommend = 0;
+      }
       else {
         this.props.createFriendRequest(profiles[this.profileIndex].id);
         profiles[this.profileIndex].friendshipStatus.isPending = true;
@@ -45,6 +49,8 @@ export default class extends Component {
       isRequest: false,
     };
 
+    profiles[this.profileIndex].recent = 100;
+
     this.setState({
       previousFriendshipStatus: friendshipStatus
     })
@@ -59,6 +65,9 @@ export default class extends Component {
       isPending: false,
       isRequest: false,
     };
+
+    this.profiles[this.profileIndex].recent = 0;
+    this.profiles[this.profileIndex].recommend = 0;
 
     this.setState({
       previousFriendshipStatus: friendshipStatus
@@ -79,83 +88,84 @@ export default class extends Component {
       <div>
         {this.profileIndex !== -1 ?
           <div className={"Profile"}>
-            <img
-              src={profiles[this.profileIndex].photo}
-              alt={"profile"}
+            <ProfileAvatar
+              profile={profiles[this.profileIndex]}
             />
-            <div>
-              {profiles[this.profileIndex].name}
-            </div>
-            <div
-              onClick={this.switchFriendshipStatus}
-            >
-              {profiles[this.profileIndex].friendshipStatus.isFriend ?
-                "Unfriend"
-                :
-                profiles[this.profileIndex].friendshipStatus.isRequest ?
-                  <ReactSwipe
-                    withoutControls={true}
-                    afterSlide={(slideIndex) => {
-                      if(slideIndex === 0)
-                        this.acceptFriendRequest()
-                      if(slideIndex === 2)
-                        this.declineFriendRequest()
-                    }}
-                    slideIndex={1}
-                  >
-                    <div
-                      style={{backgroundColor: "green"}}
-                    >
-                      ACCEPT
-                    </div>
-                    <div>
-                      Requesting...
-                    </div>
-                    <div
-                      style={{backgroundColor: "red"}}
-                    >
-                      DECLINE
-                    </div>
-                  </ReactSwipe>
-                  :
-                  profiles[this.profileIndex].friendshipStatus.isPending ?
-                    "Pending..."
-                    :
-                    "Add to Friends"
-              }
-            </div>
-            <div>
-            {profiles[this.profileIndex].friendshipStatus.isFriend ?
+            <div className={"Profile-List"}>
               <div>
+                {profiles[this.profileIndex].name}
+              </div>
+              <div
+                onClick={this.switchFriendshipStatus}
+              >
+                {profiles[this.profileIndex].friendshipStatus.isFriend ?
+                  "Unfriend"
+                  :
+                  profiles[this.profileIndex].friendshipStatus.isRequest ?
+                    <ReactSwipe
+                      withoutControls={true}
+                      afterSlide={(slideIndex) => {
+                        if(slideIndex === 0)
+                          this.acceptFriendRequest()
+                        if(slideIndex === 2)
+                          this.declineFriendRequest()
+                      }}
+                      slideIndex={1}
+                    >
+                      <div
+                        style={{backgroundColor: "green"}}
+                      >
+                        ACCEPT
+                      </div>
+                      <div>
+                        Requesting...
+                      </div>
+                      <div
+                        style={{backgroundColor: "red"}}
+                      >
+                        DECLINE
+                      </div>
+                    </ReactSwipe>
+                    :
+                    profiles[this.profileIndex].friendshipStatus.isPending ?
+                      "Pending..."
+                      :
+                      "Add to Friends"
+                }
+              </div>
+              <div>
+              {profiles[this.profileIndex].friendshipStatus.isFriend ?
                 <div>
-                  <Link to={pathRoot + "/Events/"}>
-                    Events
-                  </Link>
-                </div>
-                <div>
-                  <div onClick={(event) =>
-                    this.setState({isPostsOpen: !this.state.isPostsOpen})
-                  }>
-                    Posts
+                  <div>
+                    <Link to={pathRoot + "/Events/"}>
+                      Events
+                    </Link>
                   </div>
                   <div>
-                    {this.state.isPostsOpen ?
-                      profiles[this.profileIndex].posts.map((post, index) =>
-                        <div
-                          key={index}
-                        >
-                          {post}
-                        </div>
-                      )
-                      :
-                      ""
-                    }
+                    <div onClick={(event) =>
+                      this.setState({isPostsOpen: !this.state.isPostsOpen})
+                    }>
+                      Posts
+                    </div>
+                    <div>
+                      {this.state.isPostsOpen ?
+                        profiles[this.profileIndex].posts.map((post, index) =>
+                          <div
+                            key={index}
+                          >
+                            {post}
+                          </div>
+                        )
+                        :
+                        ""
+                      }
+                    </div>
                   </div>
                 </div>
+                :
+                ""
+              }
               </div>
-              :
-              ""
-            }
             </div>
           </div>
           :

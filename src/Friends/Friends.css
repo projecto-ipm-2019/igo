@@ -3,6 +3,11 @@
     overflow-y: scroll;
 }
 
+.Friends a{
+    color: black;
+    text-decoration: none;
+}
+
 .Friends-QR {
     height: 45mm;
 }
@@ -29,10 +34,19 @@
 }
 
 .Profile {
-    height: 45mm;
+    height: 45mm    ;
     overflow-y: scroll;
 }
 
-.Profile div {
+.Profile-List div {
     border-bottom: black solid 1px;
+}
+
+.Friends-Sort-Find {
+    height: 40mm;
+    overflow-y: scroll;
+}
+
+.Header {
+    height: 5mm;
 }

@@ -1,4 +1,4 @@
-import logo from './logo.svg'
+import photo79718 from './79718.jpg'
 
 export const profilesList = [
   {
@@ -8,12 +8,18 @@ export const profilesList = [
       isPending: false,
       isRequest: false
     },
-    photo: logo,
+    photo: null,
     id: 1,
     posts: [
       "Fui à praia pela primeira vez!",
       "O cachorro já tem nome, GUZI!"
-    ]
+    ],
+    location: {
+      distance: 1,
+    },
+    recent: 0,
+    recommend: 100,
+    isContact: false,
   },
   {
     name: "André Segundo",
@@ -22,11 +28,17 @@ export const profilesList = [
       isPending: false,
       isRequest: false
     },
-    photo: logo,
+    photo: null,
     id: 2,
     posts: [
       "Nunca fui à praia. Alguém me leva?"
-    ]
+    ],
+    location: {
+      distance: 420,
+    },
+    recent: 0,
+    recommend: 50,
+    isContact: false,
   },
   {
     name: "Madalena Gonçalves",
@@ -35,9 +47,15 @@ export const profilesList = [
       isPending: false,
       isRequest: false
     },
-    photo: logo,
+    photo: null,
     id: 3,
-    posts: []
+    posts: [],
+    location: {
+      distance: 42,
+    },
+    recent: 25,
+    recommend: 100,
+    isContact: false,
   },
   {
     name: "Maria Maia",
@@ -46,13 +64,39 @@ export const profilesList = [
       isPending: false,
       isRequest: true
     },
-    photo: logo,
+    photo: null,
     id: 4,
     posts: [
       "Vou apagar o iGo!",
       "O iGo não pára de mandar notificações inúteis!!!",
       "Where can iGo today? Ahaha o meu inglês é tão bom!",
       "O evento de ontem deixou-me de rastos"
-    ]
+    ],
+    location: {
+      distance: 4200,
+    },
+    recent: 0,
+    recommend: 75,
+    isContact: false,
+  },
+  {
+    name: "André Santos",
+    friendshipStatus: {
+      isFriend: true,
+      isPending: false,
+      isRequest: false
+    },
+    photo: photo79718,
+    id: 5,
+    posts: [
+      "I'm singing in the rain.",
+      "Boa sorte com a Elsa!"
+    ],
+    location: {
+      distance: 23,
+    },
+    recent: 10,
+    recommend: 100,
+    isContact: true,
   }
 ];

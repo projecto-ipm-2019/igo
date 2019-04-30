@@ -42,6 +42,9 @@ export default class iGo extends Component {
       isFriend: true,
       isPending: false
     };
+
+    this.profiles[profileIndex].recent = 100;
+
     this.setState({
       friendRequests: this.state.friendRequests.filter((_profileId) =>
         _profileId !== profileId
@@ -69,7 +72,7 @@ export default class iGo extends Component {
               component={MainMenu}
             />
             <Route
-              exact path={pathRoot + "/Friends/"}
+              path={pathRoot + "/Friends"}
               render={(props) =>
                 <Friends
                   {...props}
@@ -91,7 +94,7 @@ export default class iGo extends Component {
               }
             />
             <Route
-              path={pathRoot + "/Friends/:userId"}
+              path={pathRoot + "/Profiles/:userId"}
               render={(props) =>
                 <Profile
                   {...props}
