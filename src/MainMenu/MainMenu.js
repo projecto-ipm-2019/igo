@@ -3,8 +3,11 @@ import ReactSwipe from 'nuka-carousel'
 import { Link } from "react-router-dom";
 
 import "./MainMenu.css"
-import logo from "./Resources/logo.svg"
 import { pathRoot } from "../iGo/iGo";
+import friendsImg from "./Resources/friends.svg"
+import notificationsImg from "./Resources/notifications.png"
+import eventsImg from "./Resources/events.svg"
+import newNotifImg from "./Resources/newnotifications.png"
 
 export class MainMenu extends Component {
   render() {
@@ -18,37 +21,53 @@ export class MainMenu extends Component {
         <div className={"MainMenu-Friends"}>
           <Entry
             title={"Friends"}
-            src={logo}
+            src={friendsImg}
           />
         </div>
         <div className={"MainMenu-Events"}>
           <Entry
             title={"Events"}
-            src={logo}
+            src={eventsImg}
           />
         </div>
         <div className={"MainMenu-Notifications"}>
-          <Entry
-            title={"Notifications"}
-            src={logo}
-          />
+			<Notif/>
         </div>
       </ReactSwipe>
     );
   }
 }
 
+function Notif() {
+	if (global.hasNewNotif===0){
+		return(
+		<Entry
+			title={"Notifications"}
+			src={notificationsImg}
+		/>
+		);
+	}
+	else{	
+		return(
+			<Entry
+				title={"Notifications"}
+				src={newNotifImg}
+			/>
+		);
+	}
+}
+
 export const Entry = ({title, src}) => (
-  <div
-    className={"MainMenu-Entry"}
-  >
-    {title}
-    <Link to={pathRoot + "/" + title}>
-      <input
+	<div>
+		{title}
+		<div className={"MainMenu-Entry"}>
+      <Link to={pathRoot + "/" + title}>
+        <input
         type={"image"}
         alt={title + "-image"}
         src={src}
-      />
-    </Link>
-  </div>
+        />
+      </Link>
+		</div>
+	</div>
 );

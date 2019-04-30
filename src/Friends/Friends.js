@@ -3,7 +3,7 @@ import './Friends.css'
 import ReactSwipe from 'nuka-carousel';
 import { Switch, Link, Route} from "react-router-dom";
 
-import logo from './Resources/logo.svg'
+import qr from './Resources/qr--igo.svg'
 import {pathRoot} from "../iGo/iGo";
 import {Avatar, Divider, List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import {RecentActors, LocationOn, SortByAlpha, Stars, Contacts, Search} from "@material-ui/icons";
@@ -217,7 +217,7 @@ export class FriendsQR extends Component {
         </header>
         <main>
           <img
-            src={logo}
+            src={qr}
             alt={"QR Code"}
           />
         </main>

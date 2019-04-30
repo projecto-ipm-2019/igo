@@ -12,6 +12,11 @@
     height: 45mm;
 }
 
+.Friends-QR img {
+    max-height: 40mm;
+    max-width: 40mm;
+}
+
 .Friends-Title {
     border-bottom: black solid 1px;
 }
