@@ -1,0 +1,22 @@
+{
+  "main.css": "./static/css/main.0ebf6e74.chunk.css",
+  "main.js": "./static/js/main.c9803a5d.chunk.js",
+  "main.js.map": "./static/js/main.c9803a5d.chunk.js.map",
+  "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
+  "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
+  "static/js/2.c0699dc8.chunk.js": "./static/js/2.c0699dc8.chunk.js",
+  "static/js/2.c0699dc8.chunk.js.map": "./static/js/2.c0699dc8.chunk.js.map",
+  "index.html": "./index.html",
+  "precache-manifest.7715f06745f129e229dc5d2d48cb248b.js": "./precache-manifest.7715f06745f129e229dc5d2d48cb248b.js",
+  "service-worker.js": "./service-worker.js",
+  "static/css/main.0ebf6e74.chunk.css.map": "./static/css/main.0ebf6e74.chunk.css.map",
+  "static/media/79718.jpg": "./static/media/79718.68aa7d9a.jpg",
+  "static/media/events.svg": "./static/media/events.e8f6f6d1.svg",
+  "static/media/friends.svg": "./static/media/friends.72b7d88c.svg",
+  "static/media/home.svg": "./static/media/home.1bb81d2b.svg",
+  "static/media/iGOlogo.jpg": "./static/media/iGOlogo.da2a31f5.jpg",
+  "static/media/newnotifications.png": "./static/media/newnotifications.d9336abc.png",
+  "static/media/qr--igo.svg": "./static/media/qr--igo.08b052ac.svg",
+  "static/media/return.svg": "./static/media/return.0325ab33.svg",
+  "static/media/trash.png": "./static/media/trash.cc9a2475.png"
+}
