@@ -1,4 +1,5 @@
 import photo79718 from './79718.jpg'
+import photo83500 from './83500.jpg'
 
 export const profilesList = [
   {
@@ -98,5 +99,22 @@ export const profilesList = [
     recent: 10,
     recommend: 100,
     isContact: true,
+  },
+  {
+    name: "Luís Pedro",
+    friendshipStatus: {
+      isFriend: false,
+      isPending: false,
+      isRequest: true,
+    },
+    photo: photo83500,
+    id: 6,
+    posts: ["No post"],
+    location: {
+      distance: 50,
+    },
+    recent: 0,
+    recommend: 100,
+    isContact: true
   }
 ];

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 
 import './Friends.css';
 
@@ -66,8 +66,8 @@ export default class extends Component {
       isRequest: false,
     };
 
-    this.profiles[this.profileIndex].recent = 0;
-    this.profiles[this.profileIndex].recommend = 0;
+    profiles[this.profileIndex].recent = 0;
+    profiles[this.profileIndex].recommend = 0;
 
     this.setState({
       previousFriendshipStatus: friendshipStatus

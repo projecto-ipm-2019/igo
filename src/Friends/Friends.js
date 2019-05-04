@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import './Friends.css'
 import ReactSwipe from 'nuka-carousel';
-import { Switch, Link, Route} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
 
 import qr from './Resources/qr--igo.svg'
 import {pathRoot} from "../iGo/iGo";
 import {Avatar, Divider, List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
-import {RecentActors, LocationOn, SortByAlpha, Stars, Contacts, Search} from "@material-ui/icons";
+import {Contacts, LocationOn, RecentActors, Search, SortByAlpha, Stars} from "@material-ui/icons";
+
+import FriendsDivider from './FriendsDivider'
 
 export default class extends Component {
   state = {
@@ -17,11 +19,13 @@ export default class extends Component {
 
   updateSortFriendsIndex = (index) => {
     this.setState({sortFriendsIndex: index});
+    this.props.history.goBack();
   };
 
   updateSortFindIndex = (index) => {
-    this.setState({sortFindIndex: index})
-  }
+    this.setState({sortFindIndex: index});
+    this.props.history.goBack();
+  };
 
 
   render() {
@@ -87,6 +91,20 @@ export class FriendsMain extends Component {
         <header className={"Friends-Title"}>
           <Link to={this.props.match.url + "/sort"}>
             Your Friends
+            <div>
+            {this.props.sortFriendsIndex === 0 ?
+              <RecentActors />
+              :
+              this.props.sortFriendsIndex === 1 ?
+                <LocationOn />
+                :
+                this.props.sortFriendsIndex === 2 ?
+                  <SortByAlpha />
+                  :
+                  ""
+            }
+            </div>
+            <Divider/>
           </Link>
         </header>
         <main>
@@ -126,6 +144,23 @@ export class FriendsFind extends Component {
         <header className={"Friends-Title"}>
           <Link to={this.props.match.url + "/sort"}>
             Find
+            <div>
+              {this.props.sortFindIndex === 0 ?
+                <Stars />
+                :
+                this.props.sortFindIndex === 1 ?
+                  <LocationOn />
+                  :
+                  this.props.sortFindIndex === 2 ?
+                    <Contacts />
+                    :
+                    this.props.sortFindIndex === 3 ?
+                      <Search />
+                      :
+                      ""
+              }
+            </div>
+            <Divider/>
           </Link>
         </header>
         <main>
@@ -161,6 +196,7 @@ export class FriendsPending extends Component {
       <div className={"Friends"}>
         <header className={"Friends-Title"}>
           Pending
+          <FriendsDivider/>
         </header>
         <main>
           {profiles.filter((profile) => (
@@ -173,6 +209,7 @@ export class FriendsPending extends Component {
           ))}
           <header className={"Friends-Title"}>
             Requests
+            <Divider/>
           </header>
           <main>
             {profiles.filter((profile) => (

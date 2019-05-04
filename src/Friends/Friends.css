@@ -18,7 +18,12 @@
 }
 
 .Friends-Title {
-    border-bottom: black solid 1px;
+    background-color: #4267b2;
+    color: white;
+}
+
+.Friends-Title a{
+    color: white;
 }
 
 .Friends-Entry {
