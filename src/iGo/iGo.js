@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Link, Redirect, Route, Switch} from 'react-router-dom';
 
 import "./iGo.css"
-import { MainMenu } from "../MainMenu/MainMenu";
+import {MainMenu} from "../MainMenu/MainMenu";
 import Friends from "../Friends/Friends";
 import Events from "../Events/Events";
+import Event from "../Event/Event";
 import Notifications from "../Notifications/Notifications";
 import Profile from "../Friends/Profile";
-
 // Resources
 import logo from "./Resources/iGOlogo.jpg"
-import { notificationsList } from "./Resources/notificationsList";
-import { profilesList } from "./Resources/profilesList";
+import {notificationsList} from "./Resources/notificationsList";
+import {profilesList} from "./Resources/profilesList";
+import {eventsList} from "./Resources/eventsList";
 import homeImg from "./Resources/home.svg"
 import returnImg from "./Resources/return.svg"
 
@@ -28,6 +29,8 @@ for (let n in notificationsList){
 export default class iGo extends Component {
   notifications = notificationsList;
   profiles = profilesList;
+  events = eventsList;
+
   state = {
     friendRequests: []
   };
@@ -93,7 +96,22 @@ export default class iGo extends Component {
             />
             <Route
               path={pathRoot + "/Events"}
-              component={Events}
+              render={(props) =>
+                <Events
+                  {...props}
+                  events={this.events}
+                />
+              }
+            />
+            <Route
+              path={pathRoot + "/Event/:eventId"}
+              render={(props) =>
+                <Event
+                  {...props}
+                  profiles={this.profiles}
+                  events={this.events}
+                />
+              }
             />
             <Route
               path={pathRoot + "/Notifications"}
@@ -101,15 +119,18 @@ export default class iGo extends Component {
                 <Notifications
                   {...props}
                   notifications={this.notifications}
+                  events={this.events}
+                  profiles={this.profiles}
                 />
               }
             />
             <Route
-              path={pathRoot + "/Profiles/:userId"}
+              path={pathRoot + "/Profile/:userId"}
               render={(props) =>
                 <Profile
                   {...props}
                   profiles={this.profiles}
+                  events={this.events}
                   createFriendRequest={this.createFriendRequest}
                 />
               }

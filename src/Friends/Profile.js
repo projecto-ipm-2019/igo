@@ -84,6 +84,8 @@ export default class extends Component {
         profile.id.toString() === match.params.userId
     );
 
+    console.debug("Profile", profiles[this.profileIndex]);
+
     return (
       <div>
         {this.profileIndex !== -1 ?

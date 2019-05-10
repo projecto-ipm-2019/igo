@@ -1,13 +1,19 @@
-import React, { Component } from 'react'
-import { Link } from "react-router-dom";
+import React, {Component} from 'react';
+import {createStyles, withStyles} from '@material-ui/core/styles';
 
-import './Notifications.css'
-import ReactSwipe from 'nuka-carousel';
-import trashImg from "./trash.png"
+import NotificationEntry from './NotificationEntry'
 
-import { pathRoot } from "../iGo/iGo";
+import {Divider, List} from "@material-ui/core";
 
-export default class extends Component {
+const styles = createStyles({
+  root: {
+    height: "45mm",
+    width: "45mm",
+    overflowY: "auto"
+  }
+});
+
+class Notifications extends Component {
   constructor(props) {
     super(props);
     this.afterSlide = this.afterSlide.bind(this);
@@ -16,11 +22,10 @@ export default class extends Component {
 
   markRead(notificationIndex) {
     if (!this.props.notifications[notificationIndex].isRead) {
-		this.props.notifications[notificationIndex].isRead = true;
-		this.setState({
-			latestReadNotificationIndex: notificationIndex
-		});
-		global.hasNewNotif--;
+		  this.props.notifications[notificationIndex].isRead = true;
+		  this.setState({
+			  latestReadNotificationIndex: notificationIndex
+		  });
     }
   }
 
@@ -31,85 +36,34 @@ export default class extends Component {
   };
 
   render() {
+    const {
+      classes
+    } = this.props;
+
     return(
       <div>
-        <header className={"Notifications-Title"}>
+        <header>
           Notifications
+          <Divider/>
         </header>
         <main>
-          <div className={"Notifications"}>
-            {this.props.notifications.map( (notification, index) => (
-              <Notification
-                isRead={notification.isRead}
-                text={notification.text}
-                key={notification.text + index.toString()}
+          <List
+            className={classes.root}
+          >
+            {this.props.notifications.map(( notification, index ) => (
+              <NotificationEntry
+                key={notification.id}
+                notification={notification}
                 index={index}
-                afterSlide={this.afterSlide}
                 markRead={this.markRead}
-                source={notification.source}
+                afterSlide={this.afterSlide}
               />
             ))}
-          </div>
+          </List>
         </main>
       </div>
     );
   }
 }
 
-export class Notification extends Component {
-
-  render() {
-    const {
-      isRead,
-      text,
-      index,
-      afterSlide,
-      markRead,
-      source
-    } = this.props;
-
-    return (
-      <ReactSwipe
-        withoutControls={true}
-        afterSlide={(slideIndex) => {
-          if(slideIndex === 1)
-			if(!isRead){global.hasNewNotif--;}
-            afterSlide(this.props.index)
-        }}
-      >
-        {isRead ? 
-          <Link
-            to={pathRoot + source}
-          >
-            <NotificationEntry
-              text={text}
-              isRead={isRead}
-            />
-          </Link>
-          :
-          <NotificationEntry
-            text={text}
-            isRead={isRead}
-            onClick={
-              (event) => markRead(index)}
-          >
-            {text}
-          </NotificationEntry>
-        }
-        <div className={"Notifications-Delete"}>
-            <img src={trashImg} alt="trash" width="30"/>
-        </div>
-      </ReactSwipe>
-    );
-  }
-}
-
-export const NotificationEntry = ({text, isRead, onClick}) => (
-  <div
-    className={"Notifications-Entry"}
-    style={{backgroundColor: isRead ? 'white' : 'gray'}}
-    onClick={onClick}
-  >
-    {text}
-  </div>
-);
+export default withStyles(styles)(Notifications);

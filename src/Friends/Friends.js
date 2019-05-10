@@ -124,7 +124,7 @@ export class FriendsMain extends Component {
             }
           ).map((profile) => (
             <FriendsEntry
-              key={profile.name}
+              key={profile.id}
               profile={profile}
             />
           ))}
@@ -229,7 +229,7 @@ export class FriendsPending extends Component {
 
 export const FriendsEntry = ({profile}) => (
   <div className={"Friends-Entry"}>
-    <Link to={pathRoot + "/Profiles/" + profile.id}>
+    <Link to={pathRoot + "/Profile/" + profile.id}>
       {profile.name}
     </Link>
     {profile.photo ?
