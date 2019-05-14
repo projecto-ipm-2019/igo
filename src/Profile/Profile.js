@@ -1,39 +1,28 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
-import {createStyles, Divider, List, ListItem, ListItemText, withStyles} from "@material-ui/core";
+import {Divider, List, ListItem, ListItemText, Typography, withStyles} from "@material-ui/core";
+import EventsEntry from '../Events/EventsEntry'
 
 import {ExpandLess, ExpandMore} from "@material-ui/icons";
-
-import '../Friends/Friends.css';
 
 import ProfileAvatar from "./ProfileAvatar";
 
 import ReactSwipe from 'nuka-carousel';
-import {pathRoot} from "../iGo/iGo";
 
-const styles = createStyles({
+const styles = theme => ({
   root: {
     height: "45mm",
+    width: "45mm",
     overflowY: "scroll",
-  },
-  listItem: {
-    paddingRight: 0,
-    paddingLeft: 0
-  },
-  listItemText: {
-    paddingRight: 0,
-    textAlign: "center"
   },
   listItemTextAccept: {
     backgroundColor: "green",
-    paddingRight: 0,
-    textAlign: "center"
   },
   listItemTextReject: {
-    backgroundColor: "red",
-    paddingRight: 0,
-    textAlign: "center"
-  }
+    backgroundColor: theme.palette.secondary.main,
+  },
+  link: {
+    textDecoration: "none"
+  },
 });
 
 class Profile extends Component {
@@ -106,6 +95,7 @@ class Profile extends Component {
   render() {
     const {
       profiles,
+      events,
       match,
       classes
     } = this.props;
@@ -114,150 +104,224 @@ class Profile extends Component {
         profile.id.toString() === match.params.userId
     );
 
-    console.debug("Profile", profiles[this.profileIndex]);
+    this.profile = profiles.find((profile) =>
+      profile.id.toString() === match.params.userId
+    );
 
-    //TODO: Make Events a nested list with the profile events
+    console.debug("Profile", this.profile);
 
-    return (
-      <React.Fragment>
-        {this.profileIndex !== -1 ?
-          <List
-            className={classes.root}
-            disablePadding
-          >
-            <ListItem>
-              <ProfileAvatar
-                profile={profiles[this.profileIndex]}
-              />
-            </ListItem>
-            <Divider/>
+    return (this.profileIndex !== -1 ?
+      <div className={classes.root}>
+        <ProfileAvatar
+          profile={profiles[this.profileIndex]}
+        />
+        <Typography>
+          {profiles[this.profileIndex].name}
+        </Typography>
+        <Divider/>
+        <List disablePadding>
+          {profiles[this.profileIndex].friendshipStatus.isFriend ?
             <ListItem
-              className={classes.listItem}
-            >
-              <ListItemText
-                className={classes.listItemText}
-                primary={profiles[this.profileIndex].name}
-
-              />
-            </ListItem>
-            <Divider/>
-            <ListItem
-              className={classes.listItem}
               button
               onClick={this.switchFriendshipStatus}
             >
-              {profiles[this.profileIndex].friendshipStatus.isFriend ?
-                <ListItemText
-                  primary={"Unfriend"}
-                  className={classes.listItemText}
-                />
-                :
-                profiles[this.profileIndex].friendshipStatus.isRequest ?
-                  <ReactSwipe
-                    withoutControls={true}
-                    afterSlide={(slideIndex) => {
-                      if(slideIndex === 0)
-                        this.acceptFriendRequest()
-                      if(slideIndex === 2)
-                        this.declineFriendRequest()
-                    }}
-                    slideIndex={1}
-                  >
-                    <ListItemText
-                      primary={"ACCEPT"}
-                      className={classes.listItemTextAccept}
-                    />
-                    <ListItemText
-                      primary={"Requesting..."}
-                      className={classes.listItemText}
-                    />
-                    <ListItemText
-                      primary={"DECLINE"}
-                      className={classes.listItemTextReject}
-                    />
-                  </ReactSwipe>
-                  :
-                  profiles[this.profileIndex].friendshipStatus.isPending ?
-                    <ListItemText
-                      primary={"Pending..."}
-                      className={classes.listItemText}
-                    />
-                    :
-                    <ListItemText
-                      primary={"Add to Friends"}
-                      className={classes.listItemText}
-                    />
-              }
+              <ListItemText>
+                <Typography
+                  variant={"body1"}
+                  align={"center"}
+                >
+                  Unfriend
+                </Typography>
+              </ListItemText>
             </ListItem>
-            <Divider/>
-            {profiles[this.profileIndex].friendshipStatus.isFriend ?
-              <React.Fragment>
-                <Link to={pathRoot + "/Events/"}>
-                  <ListItem
-                    button
-                    className={classes.listItem}
-                  >
-                    <ListItemText
-                      primary={"Events"}
-                      className={classes.listItemText}
-                    />
-                  </ListItem>
-                </Link>
-                <Divider/>
+            :
+            profiles[this.profileIndex].friendshipStatus.isRequest ?
+              <ReactSwipe
+                withoutControls={true}
+                afterSlide={(slideIndex) => {
+                  if(slideIndex === 0)
+                    this.acceptFriendRequest();
+                  if(slideIndex === 2)
+                    this.declineFriendRequest();
+                }}
+                slideIndex={1}
+              >
+                <ListItem
+                  component={"span"}
+                  className={classes.listItemTextAccept}
+                >
+                  <ListItemText>
+                    <Typography
+                      variant={"body1"}
+                      align={"center"}
+                    >
+                      ACCEPT
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+                <ListItem
+                  component={"span"}
+                >
+                  <ListItemText>
+                    <Typography
+                      variant={"body1"}
+                      align={"center"}
+                    >
+                      Requesting...
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+                <ListItem
+                  component={"span"}
+                  className={classes.listItemTextReject}
+                >
+                  <ListItemText>
+                    <Typography
+                      variant={"body1"}
+                      align={"center"}
+                    >
+                      DECLINE
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              </ReactSwipe>
+              :
+              profiles[this.profileIndex].friendshipStatus.isPending ?
                 <ListItem
                   button
-                  onClick={(event) =>
-                    this.setState({isPostsOpen: !this.state.isPostsOpen})
-                  }
-                  className={classes.listItem}
+                  onClick={this.switchFriendshipStatus}
                 >
-                  <ListItemText
-                    primary={"Posts"}
-                    className={classes.listItemText}
-                  />
-                  {this.state.isPostsOpen ? <ExpandLess/> : <ExpandMore/>}
+                  <ListItemText>
+                    <Typography
+                      variant={"body1"}
+                      align={"center"}
+                    >
+                      Pending...
+                    </Typography>
+                  </ListItemText>
                 </ListItem>
-                <Divider/>
-                <List
-                  disablePadding
+                :
+                <ListItem
+                  button
+                  onClick={this.switchFriendshipStatus}
                 >
-                  {this.state.isPostsOpen ?
-                    profiles[this.profileIndex].posts.length === 0 ?
-                      <ListItem
-                        className={classes.listItem}
-                      >
-                        <ListItemText
-                          className={classes.listItemText}
-                          primary={"No Posts to show"}
-                        />
-                      </ListItem>
-                      :
-                      profiles[this.profileIndex].posts.map((post, index) =>
-                        <ListItem
-                          className={classes.listItem}
-                          key={index}
+                  <ListItemText>
+                    <Typography
+                      variant={"body1"}
+                      align={"center"}
+                    >
+                      Add to Friends
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+          }
+          <Divider/>
+          {profiles[this.profileIndex].friendshipStatus.isFriend ?
+            <React.Fragment>
+              <ListItem
+                button
+                divider
+                onClick={(event) =>
+                  this.setState({isEventsOpen: !this.state.isEventsOpen})
+                }
+              >
+                <ListItemText>
+                  <Typography
+                    variant={"body1"}
+                    align={"center"}
+                  >
+                    Events
+                  </Typography>
+                </ListItemText>
+                {this.state.isEventsOpen ? <ExpandLess/> : <ExpandMore/>}
+              </ListItem>
+              <List disablePadding>
+                {this.state.isEventsOpen ?
+                  this.profile.events.length === 0 ?
+                    <ListItem
+                      divider
+                    >
+                      <ListItemText>
+                        <Typography
+                          variant={"body1"}
+                          align={"left"}
                         >
-                          <ListItemText
-                            className={classes.listItemText}
-                            primary={post}
-                          />
-                        </ListItem>
-                      )
+                          No Events to show
+                        </Typography>
+                      </ListItemText>
+                    </ListItem>
                     :
-                    ""
-                  }
-                </List>
-              </React.Fragment>
-              :
-              ""
-            }
-          </List>
-          :
-          <div>
-            The profile you were looking for doesn't exist or was deleted.
-          </div>
-        }
-      </React.Fragment>
+                    this.profile.events.map(eventId =>
+                      <EventsEntry
+                        key={eventId}
+                        event={events.find(event => event.id === eventId)}
+                      />
+                    )
+                  :
+                  ""
+                }
+              </List>
+              <ListItem
+                button
+                onClick={(event) =>
+                  this.setState({isPostsOpen: !this.state.isPostsOpen})
+                }
+              >
+                <ListItemText>
+                  <Typography
+                    variant={"body1"}
+                    align={"center"}
+                  >
+                    Posts
+                  </Typography>
+                </ListItemText>
+                {this.state.isPostsOpen ? <ExpandLess/> : <ExpandMore/>}
+              </ListItem>
+              <Divider/>
+              <List
+                disablePadding
+              >
+                {this.state.isPostsOpen ?
+                  profiles[this.profileIndex].posts.length === 0 ?
+                    <ListItem>
+                      <ListItemText>
+                        <Typography
+                          variant={"body1"}
+                          align={"center"}
+                        >
+                          No Posts to show
+                        </Typography>
+                      </ListItemText>
+                    </ListItem>
+                    :
+                    profiles[this.profileIndex].posts.map((post, index) =>
+                      <ListItem
+                        key={index}
+                      >
+                        <ListItemText>
+                          <Typography
+                            variant={"body1"}
+                            align={"left"}
+                          >
+                            {post}
+                          </Typography>
+                        </ListItemText>
+                      </ListItem>
+                    )
+                  :
+                  ""
+                }
+              </List>
+            </React.Fragment>
+            :
+            ""
+          }
+        </List>
+      </div>
+      :
+      <div>
+        The profile you were looking for doesn't exist or was deleted.
+      </div>
     );
   }
 }

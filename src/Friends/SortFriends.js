@@ -1,8 +1,16 @@
-import {Divider, List, ListItem, ListItemIcon, ListItemText, withStyles} from "@material-ui/core";
+import {Divider, List, ListItem, ListItemIcon, ListItemText, Typography, withStyles} from "@material-ui/core";
 import {LocationOn, RecentActors, SortByAlpha} from "@material-ui/icons";
 import React from "react";
 
 const styles = theme => ({
+  root: {
+    height: "45mm",
+    width: "45mm",
+    overflowY: "scroll"
+  },
+  header: {
+    backgroundColor: theme.palette.primary.main,
+  }
 });
 
 export function iconByIndex(index) {
@@ -20,9 +28,16 @@ export function iconByIndex(index) {
 
 function SortFriends({updateSortFriendsIndex, sortFriendsIndex, classes}) {
   return (
-    <div>
-      <header>
-        Sort Friends
+    <div className={classes.root}>
+      <header
+        className={classes.header}
+      >
+        <Typography
+          variant={"h6"}
+          color={"textSecondary"}
+        >
+          Sort Friends
+        </Typography>
         <Divider/>
       </header>
       <main>

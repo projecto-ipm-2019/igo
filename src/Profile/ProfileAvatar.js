@@ -7,6 +7,7 @@ const styles = {
     width: "30mm",
     height: "30mm",
     fontSize: "20mm",
+    marginTop: "5mm"
   }
 };
 

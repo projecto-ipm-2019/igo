@@ -21,6 +21,7 @@ export const profilesList = [
     recent: 0,
     recommend: 100,
     isContact: false,
+    events: [3]
   },
   {
     name: "André Segundo",
@@ -40,6 +41,7 @@ export const profilesList = [
     recent: 0,
     recommend: 50,
     isContact: false,
+    events: [2,4,5,6]
   },
   {
     name: "Madalena Gonçalves",
@@ -57,6 +59,7 @@ export const profilesList = [
     recent: 25,
     recommend: 100,
     isContact: false,
+    events: []
   },
   {
     name: "Maria Maia",
@@ -79,6 +82,7 @@ export const profilesList = [
     recent: 0,
     recommend: 75,
     isContact: false,
+    events: [1, 2]
   },
   {
     name: "André Santos",
@@ -99,6 +103,7 @@ export const profilesList = [
     recent: 10,
     recommend: 100,
     isContact: true,
+    events: [7]
   },
   {
     name: "Luís Pedro",
@@ -115,6 +120,7 @@ export const profilesList = [
     },
     recent: 0,
     recommend: 100,
-    isContact: true
+    isContact: true,
+    events: []
   }
 ];

@@ -143,7 +143,6 @@ class EventEntry extends Component {
             </Link>
             :
             ""
-
           }
         </List>
       </React.Fragment>

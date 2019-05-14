@@ -11,9 +11,7 @@ const styles = theme => ({
     paddingLeft: 0
   },
   item: {
-    text: {
-      paddingRight: 0,
-    }
+    paddingRight: 0,
   },
   link: {
     textDecoration: "none"
@@ -36,7 +34,7 @@ function EventsEntry(props) {
         <ListItemAvatar>
           <Avatar alt={ event.name } src={ event.photoAlbum.length > 0 ? event.photoAlbum[0] : "" }/>
         </ListItemAvatar>
-        <ListItemText primary={ event.name } className={ classes.item.text }/>
+        <ListItemText primary={ event.name } className={ classes.item }/>
       </ListItem>
     </Link>
   );

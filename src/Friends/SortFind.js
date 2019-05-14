@@ -1,14 +1,15 @@
-import {Divider, List, ListItem, ListItemIcon, ListItemText, withStyles} from "@material-ui/core";
+import {Divider, List, ListItem, ListItemIcon, ListItemText, Typography, withStyles} from "@material-ui/core";
 import {Contacts, LocationOn, Search, Stars} from "@material-ui/icons";
 import React from "react";
 
 const styles = theme => ({
-  header: {
-    height: "5mm"
-  },
-  main: {
-    height: "40mm",
+  root: {
+    height: "45mm",
+    width: "45mm",
     overflowY: "scroll"
+  },
+  header: {
+    backgroundColor: theme.palette.primary.main,
   }
 });
 
@@ -29,62 +30,63 @@ export function iconByIndex(index) {
 
 function SortFind({updateSortFindIndex, sortFindIndex, classes}){
   return (
-    <div>
+    <div className={classes.root}>
       <header
         className={classes.header}
       >
-        Sort Find
+        <Typography
+          variant={"h6"}
+          color={"textSecondary"}
+        >
+          Sort Find
+        </Typography>
         <Divider/>
       </header>
       <main>
-        <div
-          className={classes.main}
+        <List
+          disablePadding
         >
-          <List
-            disablePadding
+          <ListItem
+            button
+            selected={sortFindIndex === 0}
+            onClick={event => updateSortFindIndex(0)}
           >
-            <ListItem
-              button
-              selected={sortFindIndex === 0}
-              onClick={event => updateSortFindIndex(0)}
-            >
-              <ListItemIcon>
-                {iconByIndex(0)}
-              </ListItemIcon>
-              <ListItemText primary="Recommend" />
-            </ListItem>
-            <ListItem
-              button
-              selected={sortFindIndex === 1}
-              onClick={event => updateSortFindIndex(1)}
-            >
-              <ListItemIcon>
-                {iconByIndex(1)}
-              </ListItemIcon>
-              <ListItemText primary="Nearby" />
-            </ListItem>
-            <ListItem
-              button
-              selected={sortFindIndex === 2}
-              onClick={event => updateSortFindIndex(2)}
-            >
-              <ListItemIcon>
-                {iconByIndex(2)}
-              </ListItemIcon>
-              <ListItemText primary="Contacts" />
-            </ListItem>
-            <ListItem
-              button
-              selected={sortFindIndex === 3}
-              onClick={event => updateSortFindIndex(3)}
-            >
-              <ListItemIcon>
-                {iconByIndex(3)}
-              </ListItemIcon>
-              <ListItemText primary="Search" />
-            </ListItem>
-          </List>
-        </div>
+            <ListItemIcon>
+              {iconByIndex(0)}
+            </ListItemIcon>
+            <ListItemText primary="Recommend" />
+          </ListItem>
+          <ListItem
+            button
+            selected={sortFindIndex === 1}
+            onClick={event => updateSortFindIndex(1)}
+          >
+            <ListItemIcon>
+              {iconByIndex(1)}
+            </ListItemIcon>
+            <ListItemText primary="Nearby" />
+          </ListItem>
+          <ListItem
+            button
+            selected={sortFindIndex === 2}
+            onClick={event => updateSortFindIndex(2)}
+          >
+            <ListItemIcon>
+              {iconByIndex(2)}
+            </ListItemIcon>
+            <ListItemText primary="Contacts" />
+          </ListItem>
+          <ListItem
+            button
+            selected={sortFindIndex === 3}
+            onClick={event => updateSortFindIndex(3)}
+          >
+            <ListItemIcon>
+              {iconByIndex(3)}
+            </ListItemIcon>
+            <ListItemText primary="Search" />
+          </ListItem>
+        </List>
       </main>
     </div>
   );

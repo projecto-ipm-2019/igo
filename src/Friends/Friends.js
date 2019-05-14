@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import './Friends.css'
 import ReactSwipe from 'nuka-carousel';
 import {Route, Switch} from "react-router-dom";
 import {createStyles, withStyles} from "@material-ui/core";
