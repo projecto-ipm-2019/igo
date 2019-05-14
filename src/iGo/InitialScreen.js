@@ -6,20 +6,32 @@ import {pathRoot} from "./iGo";
 import {withStyles} from "@material-ui/core";
 
 const styles = theme => ({
+  root: {
+    width: "45mm",
+    height: "45mm",
+    overflow: "hidden",
+  },
+  logo: {
+    margin: "3mm",
+    width: "39mm",
+    height: "39mm",
+  }
 });
 
 function InitialScreen({classes}) {
   return(
-    <div className={"iGo-InitialScreen"}>
-      <Link to={pathRoot + "/Menu"}>
+    <Link to={pathRoot + "/Menu"}>
+      <div
+        className={classes.root}
+      >
         <input
           type={"image"}
           alt={"logo"}
           src={logo}
-          className={"App-logo"}
+          className={classes.logo}
         />
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 

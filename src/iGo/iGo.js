@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Link, Redirect, Route, Switch} from 'react-router-dom';
 
-import "./iGo.css"
 import MainMenu from "../MainMenu/MainMenu";
 import Friends from "../Friends/Friends";
 import Events from "../Events/Events";
@@ -20,7 +19,21 @@ import {withStyles} from "@material-ui/core";
 export const pathRoot = "/igo";
 
 const styles = theme => ({
-
+  root: {
+    backgroundColor: theme.palette.background.default,
+    width: "45mm",
+    height: "45mm",
+    overflow: "hidden",
+    textAlign: "center"
+  },
+  buttonContainer: {
+    display: "flex",
+    flexDirection: "column",
+    "& button": {
+      paddingTop: "50%",
+      paddingBottom: "50%"
+    }
+  }
 });
 
 class iGo extends Component {
@@ -68,9 +81,11 @@ class iGo extends Component {
   };
 
   render() {
+    const {classes} = this.props;
+
     return(
       <Router>
-        <div className={"iGo"}>
+        <div className={classes.root}>
           <Switch>
             <Route
               exact path={"/"}
@@ -139,12 +154,17 @@ class iGo extends Component {
         </div>
         <Route
           path={"/"}
-          component={ButtonContainer}
+          render={(props) =>
+            <ButtonContainer
+              {...props}
+              classes={classes}
+            />
+          }
         />
         <Route
           path={"/"}
         >
-          <div className={"Button-container"}>
+          <div className={classes.buttonContainer}>
             {this.state.friendRequests.map((profileId) =>
               <button
                 key={profileId}
@@ -174,8 +194,9 @@ class ButtonContainer extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <div className={"Button-container"}>
+      <div className={classes.buttonContainer}>
         <Link to={pathRoot}>
           <button>
             <img src={homeImg} alt="home" width="31.9" />
