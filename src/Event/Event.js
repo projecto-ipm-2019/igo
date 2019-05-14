@@ -39,6 +39,10 @@ const styles = theme => ({
 });
 
 class EventEntry extends Component {
+  state = {
+    imageIndex: 0
+  };
+
   render() {
     const {match, event, classes, switchInterest} = this.props;
     return (
@@ -50,8 +54,14 @@ class EventEntry extends Component {
           className={classes.badge}
         >
           <Avatar
+            onClick={() => { if(event.photoAlbum.length > 0) {
+                this.setState({imageIndex: (this.state.imageIndex + 1)%event.photoAlbum.length})
+              }}
+            }
             alt={event.name}
-            src={event.photoAlbum.length > 0 ? event.photoAlbum[0] : ""}
+            src={event.photoAlbum.length > 0 ?
+              event.photoAlbum[this.state.imageIndex] : ""
+            }
             className={classes.avatar}
           />
         </Badge>
