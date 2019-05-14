@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
-import {createStyles, withStyles} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 
 import NotificationEntry from './NotificationEntry'
 
-import {Divider, List} from "@material-ui/core";
+import {List, Typography} from "@material-ui/core";
 
-const styles = createStyles({
+const styles = theme => ({
   root: {
     height: "45mm",
     width: "45mm",
     overflowY: "auto"
+  },
+  header: {
+    backgroundColor: theme.palette.primary.main,
   }
 });
 
@@ -41,15 +44,21 @@ class Notifications extends Component {
     } = this.props;
 
     return(
-      <div>
-        <header>
-          Notifications
-          <Divider/>
+      <div
+        className={classes.root}
+      >
+        <header
+          className={classes.header}
+        >
+          <Typography
+            color={"textSecondary"}
+            variant={"h6"}
+          >
+            Notifications
+          </Typography>
         </header>
         <main>
-          <List
-            className={classes.root}
-          >
+          <List disablePadding>
             {this.props.notifications.map(( notification, index ) => (
               <NotificationEntry
                 key={notification.id}

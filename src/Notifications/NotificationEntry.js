@@ -1,6 +1,6 @@
 import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {Divider, ListItem, ListItemText} from "@material-ui/core";
+import {ListItem, ListItemIcon, ListItemText, Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
@@ -9,60 +9,83 @@ import ReactSwipe from 'nuka-carousel';
 
 const styles = theme => ({
   readNotification: {
-    backgroundColor: "white"
+    padding: 0,
+    height: "15mm",
+    backgroundColor: theme.palette.background.default
   },
   unreadNotifications: {
-    backgroundColor: "grey"
+    padding: 0,
+    height: "15mm",
+    backgroundColor: theme.palette.action.disabledBackground
   },
-  entry: {}
+  link: {
+    textDecoration: "none"
+  },
+  deleteNotification: {
+    height: "15mm",
+    backgroundColor: theme.palette.secondary.main
+  }
 });
-
-function NotificationText({text, isRead, onClick, classes}) {
-  return(
-    <ListItemText
-      primary={text}
-      className={isRead? classes.readNotification : classes.unreadNotifications}
-    />
-  )
-}
 
 function NotificationEntry({index, notification, markRead, afterSlide, classes}) {
   return (
-    <ListItem
-      className={classes.entry}
+    <ReactSwipe
+      withoutControls={true}
+      afterSlide={(slideIndex) => {
+        if(slideIndex === 1)
+          afterSlide(index)
+      }}
+      heightMode={"first"}
     >
-      <ReactSwipe
-        withoutControls={true}
-        afterSlide={(slideIndex) => {
-          if(slideIndex === 1)
-            afterSlide(index)
-        }}
-      >
-        {notification.isRead ?
-          <Link
-            to={pathRoot + notification.source}
+      {notification.isRead ?
+        <Link
+          className={classes.link}
+          to={pathRoot + notification.source}
+        >
+          <ListItem
+            component={"span"}
+            className={notification.isRead?
+              classes.readNotification : classes.unreadNotifications
+            }
+            button
+            divider
+            alignItems={"flex-start"}
           >
-            <NotificationText
-              text={notification.text}
-              isRead={notification.isRead}
-              classes={classes}
-            />
-          </Link>
-          :
-          <NotificationText
-            text={notification.text}
-            isRead={notification.isRead}
-            onClick={
-              (event) => markRead(index)}
-            classes={classes}
-          />
-        }
-        <DeleteForeverIcon
-          className={classes.entry}
-        />
-      </ReactSwipe>
-      <Divider/>
-    </ListItem>
+            <ListItemText>
+              <Typography>
+                {notification.text}
+              </Typography>
+            </ListItemText>
+          </ListItem>
+        </Link>
+        :
+        <ListItem
+          component={"span"}
+          className={notification.isRead?
+            classes.readNotification : classes.unreadNotifications
+          }
+          button
+          divider
+          onClick={(event) => markRead(index)}
+          alignItems={"flex-start"}
+        >
+          <ListItemText>
+            <Typography>
+              {notification.text}
+            </Typography>
+          </ListItemText>
+        </ListItem>
+      }
+      <ListItem
+        divider
+        component={"span"}
+        className={classes.deleteNotification}
+      >
+        <ListItemIcon>
+          <DeleteForeverIcon/>
+        </ListItemIcon>
+      </ListItem>
+    </ReactSwipe>
   );
 }
 
