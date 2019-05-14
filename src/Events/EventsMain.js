@@ -1,5 +1,4 @@
-import {Link} from "react-router-dom";
-import {Divider, List} from "@material-ui/core";
+import {List, Typography} from "@material-ui/core";
 import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import EventsEntry from "./EventsEntry"
@@ -11,39 +10,37 @@ const styles = theme => ({
     overflowY: "auto"
   },
   header: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.primary.main,
   },
-  list: {
+  link: {
+    textDecoration: "none"
   }
 });
 
-function EventsMain(props) {
-  const {
-    events,
-    classes
-  } = props;
-
+function EventsMain({events, classes}) {
   return (
     <div className={classes.root}>
-      <header className={classes.header}>
-        <Link to={props.match.url + "/sort"}>
+      <header
+        className={classes.header}
+      >
+        <Typography
+          color={"textSecondary"}
+          variant={"h6"}
+        >
           Your Events
-        </Link>
-        <Divider/>
+        </Typography>
       </header>
       <main>
-        <List className={classes.list}>
+        <List
+          disablePadding
+        >
           {events.filter((event) =>
             event.interested
           ).map((event) =>
-            <div
+            <EventsEntry
+              event={event}
               key={event.id}
-            >
-              <EventsEntry
-                event={event}
-              />
-              <Divider/>
-            </div>
+            />
           )}
         </List>
       </main>

@@ -2,31 +2,28 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Link, Redirect, Route, Switch} from 'react-router-dom';
 
 import "./iGo.css"
-import {MainMenu} from "../MainMenu/MainMenu";
+import MainMenu from "../MainMenu/MainMenu";
 import Friends from "../Friends/Friends";
 import Events from "../Events/Events";
 import Event from "../Event/Event";
 import Notifications from "../Notifications/Notifications";
-import Profile from "../Friends/Profile";
+import Profile from "../Profile/Profile";
+import InitialScreen from "./InitialScreen"
 // Resources
-import logo from "./Resources/iGOlogo.jpg"
 import {notificationsList} from "./Resources/notificationsList";
 import {profilesList} from "./Resources/profilesList";
 import {eventsList} from "./Resources/eventsList";
 import homeImg from "./Resources/home.svg"
 import returnImg from "./Resources/return.svg"
-
+import {withStyles} from "@material-ui/core";
 
 export const pathRoot = "/igo";
-global.hasNewNotif=0;
 
-for (let n in notificationsList){
-	if(!notificationsList[n].isRead){
-		global.hasNewNotif++;
-	}
-}
+const styles = theme => ({
 
-export default class iGo extends Component {
+});
+
+class iGo extends Component {
   notifications = notificationsList;
   profiles = profilesList;
   events = eventsList;
@@ -65,6 +62,10 @@ export default class iGo extends Component {
     })
   }
 
+  unreadNotificationsAmount = () => {
+    return this.notifications.reduce((accumulator, currentNotification) =>
+      !currentNotification.isRead ? ++accumulator : accumulator, 0)
+  };
 
   render() {
     return(
@@ -83,7 +84,7 @@ export default class iGo extends Component {
             />
             <Route
               path={pathRoot + "/Menu"}
-              component={MainMenu}
+              render={() => <MainMenu profileUnread={this.unreadNotificationsAmount}/>}
             />
             <Route
               path={pathRoot + "/Friends"}
@@ -108,7 +109,6 @@ export default class iGo extends Component {
               render={(props) =>
                 <Event
                   {...props}
-                  profiles={this.profiles}
                   events={this.events}
                 />
               }
@@ -162,24 +162,7 @@ export default class iGo extends Component {
   }
 }
 
-export class InitialScreen extends Component {
-  render() {
-    return(
-      <div className={"iGo-InitialScreen"}>
-        <Link to={pathRoot + "/Menu"}>
-          <input
-            type={"image"}
-            alt={"logo"}
-            src={logo}
-            className={"App-logo"}
-          />
-        </Link>
-      </div>
-    );
-  }
-}
-
-export class ButtonContainer extends Component {
+class ButtonContainer extends Component {
   constructor(props){
     super(props);
     this.goBack = this.goBack.bind(this);
@@ -205,3 +188,5 @@ export class ButtonContainer extends Component {
     )
   }
 }
+
+export default withStyles(styles)(iGo)

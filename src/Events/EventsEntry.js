@@ -14,18 +14,25 @@ const styles = theme => ({
     text: {
       paddingRight: 0,
     }
+  },
+  link: {
+    textDecoration: "none"
   }
 });
 
 function EventsEntry(props) {
   const {
     event,
-    classes
+    classes,
+    to
   } = props;
 
   return(
-    <Link to={pathRoot + "/Event/" + event.id}>
-      <ListItem className={ classes.root } button>
+    <Link
+      to={to === undefined ? pathRoot + "/Event/" + event.id : to}
+      className={classes.link}
+    >
+      <ListItem className={ classes.root } button divider>
         <ListItemAvatar>
           <Avatar alt={ event.name } src={ event.photoAlbum.length > 0 ? event.photoAlbum[0] : "" }/>
         </ListItemAvatar>

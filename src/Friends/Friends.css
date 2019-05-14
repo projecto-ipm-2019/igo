@@ -8,15 +8,6 @@
     text-decoration: none;
 }
 
-.Friends-QR {
-    height: 45mm;
-}
-
-.Friends-QR img {
-    max-height: 40mm;
-    max-width: 40mm;
-}
-
 .Friends-Title {
     background-color: #4267b2;
     color: white;
@@ -41,22 +32,4 @@
 
 .Friends-Entry img {
     width: 15mm;
-}
-
-.Profile {
-    height: 45mm    ;
-    overflow-y: scroll;
-}
-
-.Profile-List div {
-    border-bottom: black solid 1px;
-}
-
-.Friends-Sort-Find {
-    height: 40mm;
-    overflow-y: scroll;
-}
-
-.Header {
-    height: 5mm;
 }

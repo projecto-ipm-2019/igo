@@ -1,73 +1,50 @@
-import React , {Component} from 'react';
-import ReactSwipe from 'nuka-carousel'
-import { Link } from "react-router-dom";
+import React from 'react';
+import ReactSwipe from 'nuka-carousel';
+import MainMenuEntry from './MainMenuEntry';
+import {Event, Group, Notifications} from "@material-ui/icons";
+import {withStyles} from "@material-ui/core";
 
-import "./MainMenu.css"
-import { pathRoot } from "../iGo/iGo";
-import friendsImg from "./Resources/friends.svg"
-import notificationsImg from "./Resources/notifications.png"
-import eventsImg from "./Resources/events.svg"
-import newNotifImg from "./Resources/newnotifications.png"
-
-export class MainMenu extends Component {
-  render() {
-    return(
-      <ReactSwipe
-        className={"MainMenu"}
-        enableKeyboardControls={true}
-        renderCenterLeftControls={() => (false)}
-        renderCenterRightControls={() => (false)}
-      >
-        <div className={"MainMenu-Friends"}>
-          <Entry
-            title={"Friends"}
-            src={friendsImg}
-          />
-        </div>
-        <div className={"MainMenu-Events"}>
-          <Entry
-            title={"Events"}
-            src={eventsImg}
-          />
-        </div>
-        <div className={"MainMenu-Notifications"}>
-			<Notif/>
-        </div>
-      </ReactSwipe>
-    );
+const styles = theme => ({
+  root: {
+    '& ul': {
+      width: "45mm",
+      height: "8mm"
+    },
+    '& button': {
+      pointerEvents: "none"
+    }
+  },
+  icon: {
+    height: "30mm",
+    width: "30mm",
   }
+});
+
+function MainMenu({classes, profileUnread}){
+  return(
+    <ReactSwipe
+      className={classes.root}
+      enableKeyboardControls={true}
+      renderCenterLeftControls={() => (false)}
+      renderCenterRightControls={() => (false)}
+    >
+      <MainMenuEntry
+        title={"Friends"}
+        badgeContent={0}
+        icon={<Group className={classes.icon}/>}
+      />
+      <MainMenuEntry
+        title={"Events"}
+        badgeContent={0}
+        icon={<Event className={classes.icon}/>}
+      />
+      <MainMenuEntry
+        title={"Notifications"}
+        badgeContent={profileUnread()}
+        icon={<Notifications className={classes.icon}/>}
+      />
+    </ReactSwipe>
+  )
 }
 
-function Notif() {
-	if (global.hasNewNotif===0){
-		return(
-		<Entry
-			title={"Notifications"}
-			src={notificationsImg}
-		/>
-		);
-	}
-	else{	
-		return(
-			<Entry
-				title={"Notifications"}
-				src={newNotifImg}
-			/>
-		);
-	}
-}
-
-export const Entry = ({title, src}) => (
-	<div>
-		{title}
-		<div className={"MainMenu-Entry"}>
-      <Link to={pathRoot + "/" + title}>
-        <input
-        type={"image"}
-        alt={title + "-image"}
-        src={src}
-        />
-      </Link>
-		</div>
-	</div>
-);
+export default withStyles(styles)(MainMenu)
